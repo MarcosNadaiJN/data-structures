@@ -11,8 +11,14 @@ public class MyLinkedList<T> {
     public Node<T> getHead() {
         return this.head;
     }
+    public int getLength() {
+        return this.length;
+    }
 
     public Node<T> getLast(){
+        if(head == null) {
+            return null;
+        }
         Node<T> temp = head;
         while (temp.next != null) {
             temp = temp.next;
@@ -107,6 +113,25 @@ public class MyLinkedList<T> {
         }
     }
 
+    public void cleaList() {
+        head = null;
+        length = 0;
+    }
+
+    public String toString(){
+        String result = "[";
+        if(head == null) {
+            return result+"]";
+        }
+        result = result + head.data;
+        Node<T> temp = head.next;
+        while (temp != null) {
+            result = result + "," + temp.data;
+            temp = temp.next;
+        }
+        return result + "]";
+    }
+
     public static class Node<T> {
         T data;
         Node<T> next;
@@ -114,6 +139,11 @@ public class MyLinkedList<T> {
         public Node(T data) {
             this.data = data;
             this.next = null;
+        }
+
+        @Override
+        public String toString() {
+            return data.toString();
         }
     }
 }
